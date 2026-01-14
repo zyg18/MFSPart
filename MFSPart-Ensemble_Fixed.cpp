@@ -1552,7 +1552,6 @@ std::tuple<int, int, int> print_partition_stats(const std::vector<int>& assignme
         std::cout << prefix << "cut_size: " << cut_size << " " << prefix << "violation: " << violation << std::endl;
     }
 
-    // ����connectivity-cut
     int hyperedge_connectivity_cut = 0;
     for (int he_idx = 0; he_idx < hyperedges.size(); ++he_idx) {
         const auto& [source, drains] = hyperedges[he_idx];
@@ -1568,7 +1567,6 @@ std::tuple<int, int, int> print_partition_stats(const std::vector<int>& assignme
     }
 
     if (print_or_not) {
-    // ����ƽ��hop��
         double total_hop_distance = 0.0;
         int total_hyperedge_count = 0;
         for (int he_idx = 0; he_idx < hyperedges.size(); ++he_idx) {
@@ -1726,7 +1724,7 @@ std::vector<std::vector<int>> crossover(const CSRMatrix &current_graph, std::vec
         std::vector<std::pair<int, std::unordered_set<int>>> new_hyperedges_temp;
         std::vector<int> new_hyperedge_weight_temp;
         
-        // ���ݴֻ��ϲ���Ϣ�õ�new_hyperedges_temp
+
         for (int j = 0; j < hyperedges.size(); ++j) {
             const auto& [source, drains] = hyperedges[j];
             int new_source = mapping[source];
@@ -1734,11 +1732,11 @@ std::vector<std::vector<int>> crossover(const CSRMatrix &current_graph, std::vec
             
             for (int drain : drains) {
                 int mapped_drain = mapping[drain];
-                if (mapped_drain == new_source) continue; // �����Ի�
+                if (mapped_drain == new_source) continue;
                 new_drains.insert(mapped_drain);
             }
             
-            // ��鳬�ߴ�С�����С��1������
+
             if (new_drains.size() < 1) {
                 continue;
             }
@@ -1747,7 +1745,7 @@ std::vector<std::vector<int>> crossover(const CSRMatrix &current_graph, std::vec
             new_hyperedge_weight_temp.push_back(hyperedge_weight[j]);
         }
         
-        // �ϲ���ͬ�ĳ��ߣ�source��drain���Ϸֱ���ͬ��
+
         std::vector<std::pair<int, std::unordered_set<int>>> cluster_hyperedges;
         std::vector<int> cluster_hyperedge_weight;
         std::unordered_map<std::pair<int, std::unordered_set<int>>, int, HyperedgeHash> hyperedge_to_id;
@@ -1755,14 +1753,14 @@ std::vector<std::vector<int>> crossover(const CSRMatrix &current_graph, std::vec
         for (int j = 0; j < new_hyperedges_temp.size(); ++j) {
             const auto& [source, drains] = new_hyperedges_temp[j];
             
-            // ����Ƿ��Ѵ�����ͬ�ĳ���
+
             auto it = hyperedge_to_id.find({source, drains});
             if (it != hyperedge_to_id.end()) {
-                // ����Ѵ��ڣ��ۻ�Ȩ��
+
                 int existing_hyperedge_id = it->second;
                 cluster_hyperedge_weight[existing_hyperedge_id] += new_hyperedge_weight_temp[j];
             } else {
-                // �½�����
+
                 int new_hyperedge_id = cluster_hyperedges.size();
                 cluster_hyperedges.push_back({source, drains});
                 cluster_hyperedge_weight.push_back(new_hyperedge_weight_temp[j]);
@@ -2268,3 +2266,4 @@ int main(int argc, char* argv[]) {
     
     return 0;
 }
+
