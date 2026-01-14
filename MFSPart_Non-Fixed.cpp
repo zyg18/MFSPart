@@ -1826,7 +1826,7 @@ std::tuple<int, int, int> print_partition_stats(const std::vector<int>& assignme
         std::cout << prefix << "cut_size: " << cut_size << " " << prefix << "violation: " << violation << std::endl;
     }
 
-    // ³¬±ßconnectivity-cut
+    // è¶…è¾¹connectivity-cut
     int hyperedge_connectivity_cut = 0;
     for (int he_idx = 0; he_idx < hyperedges.size(); ++he_idx) {
         const auto& [source, drains] = hyperedges[he_idx];
@@ -1842,7 +1842,7 @@ std::tuple<int, int, int> print_partition_stats(const std::vector<int>& assignme
     }
 
     if (print_or_not) {
-    // ³¬±ßÆ½¾ùhopÊı
+    // è¶…è¾¹å¹³å‡hopæ•°
         double total_hop_distance = 0.0;
         int total_hyperedge_count = 0;
         for (int he_idx = 0; he_idx < hyperedges.size(); ++he_idx) {
@@ -2164,7 +2164,7 @@ int main(int argc, char* argv[]) {
         }
     }
     
-    // Êä³öwhileÑ­»·½áÊøºóµÄviolation_setÄÚÈİ
+    // è¾“å‡ºwhileå¾ªç¯ç»“æŸåçš„violation_setå†…å®¹
     std::cout << "After while loop violation_set elements: ";
     for (const int& node_id : violation_set) {
         std::cout << node_id << " ";
@@ -2281,7 +2281,7 @@ int main(int argc, char* argv[]) {
     std::cout << "Running time: " << cpu_time_used << " s" << std::endl;
 
 
-    // ×îÖÕ½á¹û¼ì²é£º¼ÆËãcut-size¡¢violationºÍhyperedge_connectivity_cut
+    // æœ€ç»ˆç»“æœæ£€æŸ¥ï¼šè®¡ç®—cut-sizeã€violationå’Œhyperedge_connectivity_cut
     std::cout << "\n=== Final Result Check ===" << std::endl;
     
     std::vector<int> final_assignment(n);
