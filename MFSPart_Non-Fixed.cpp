@@ -1826,7 +1826,7 @@ std::tuple<int, int, int> print_partition_stats(const std::vector<int>& assignme
         std::cout << prefix << "cut_size: " << cut_size << " " << prefix << "violation: " << violation << std::endl;
     }
 
-    // 超边connectivity-cut
+
     int hyperedge_connectivity_cut = 0;
     for (int he_idx = 0; he_idx < hyperedges.size(); ++he_idx) {
         const auto& [source, drains] = hyperedges[he_idx];
@@ -1842,7 +1842,7 @@ std::tuple<int, int, int> print_partition_stats(const std::vector<int>& assignme
     }
 
     if (print_or_not) {
-    // 超边平均hop数
+
         double total_hop_distance = 0.0;
         int total_hyperedge_count = 0;
         for (int he_idx = 0; he_idx < hyperedges.size(); ++he_idx) {
@@ -2164,7 +2164,7 @@ int main(int argc, char* argv[]) {
         }
     }
     
-    // 输出while循环结束后的violation_set内容
+
     std::cout << "After while loop violation_set elements: ";
     for (const int& node_id : violation_set) {
         std::cout << node_id << " ";
@@ -2281,7 +2281,7 @@ int main(int argc, char* argv[]) {
     std::cout << "Running time: " << cpu_time_used << " s" << std::endl;
 
 
-    // 最终结果检查：计算cut-size、violation和hyperedge_connectivity_cut
+
     std::cout << "\n=== Final Result Check ===" << std::endl;
     
     std::vector<int> final_assignment(n);
@@ -2295,3 +2295,4 @@ int main(int argc, char* argv[]) {
     return 0;
     
 }
+
